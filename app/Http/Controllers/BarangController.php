@@ -7,9 +7,22 @@ use Illuminate\Http\Request;
 
 class BarangController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $barangs = Barang::latest()->paginate(10);
+        $query = Barang::query();
+
+        // Search by nama barang
+        if ($request->has('search') && $request->search != '') {
+            $query->where('nama_barang', 'like', '%' . $request->search . '%');
+        }
+
+        // Filter by kondisi
+        if ($request->has('kondisi') && $request->kondisi != '') {
+            $query->where('kondisi', $request->kondisi);
+        }
+
+        $barangs = $query->latest()->paginate(10)->withQueryString();
+        
         return view('barang.index', compact('barangs'));
     }
 

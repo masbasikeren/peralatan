@@ -8,11 +8,65 @@
         <h2>Daftar Alat Tulis</h2>
     </div>
     <div class="col text-end">
+        <a href="{{ route('barang.index') }}" class="btn btn-secondary me-2">
+            <i class="bi bi-arrow-clockwise"></i> Reset Filter
+        </a>
         <a href="{{ route('barang.create') }}" class="btn btn-primary">
             <i class="bi bi-plus-circle"></i> Tambah Barang
         </a>
     </div>
 </div>
+
+<div class="card mb-3">
+    <div class="card-body">
+        <form action="{{ route('barang.index') }}" method="GET">
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <label for="search" class="form-label">Cari Nama Barang</label>
+                    <div class="input-group">
+                        <span class="input-group-text">
+                            <i class="bi bi-search"></i>
+                        </span>
+                        <input type="text" 
+                               class="form-control" 
+                               id="search" 
+                               name="search" 
+                               placeholder="Ketik nama barang..."
+                               value="{{ request('search') }}">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <label for="kondisi" class="form-label">Kondisi</label>
+                    <select class="form-select" id="kondisi" name="kondisi">
+                        <option value="">Semua Kondisi</option>
+                        <option value="Baik" {{ request('kondisi') == 'Baik' ? 'selected' : '' }}>Baik</option>
+                        <option value="Cukup" {{ request('kondisi') == 'Cukup' ? 'selected' : '' }}>Cukup</option>
+                        <option value="Rusak" {{ request('kondisi') == 'Rusak' ? 'selected' : '' }}>Rusak</option>
+                    </select>
+                </div>
+                <div class="col-md-2 d-flex align-items-end">
+                    <button type="submit" class="btn btn-primary w-100">
+                        <i class="bi bi-search"></i> Cari
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@if(request('search') || request('kondisi'))
+<div class="alert alert-info">
+    <i class="bi bi-info-circle"></i>
+    Menampilkan hasil
+    @if(request('search'))
+        pencarian: <strong>"{{ request('search') }}"</strong>
+    @endif
+    @if(request('kondisi'))
+        dengan kondisi: <strong>{{ request('kondisi') }}</strong>
+    @endif
+    <a href="{{ route('barang.index') }}" class="alert-link">Hapus filter</a>
+</div>
+@endif
 
 <div class="card">
     <div class="card-body">
@@ -62,7 +116,13 @@
                     </tr>
                     @empty
                     <tr>
-                        <td colspan="6" class="text-center">Tidak ada data</td>
+                        <td colspan="6" class="text-center">
+                            @if(request('search') || request('kondisi'))
+                                Tidak ada data yang sesuai dengan pencarian
+                            @else
+                                Tidak ada data
+                            @endif
+                        </td>
                     </tr>
                     @endforelse
                 </tbody>
