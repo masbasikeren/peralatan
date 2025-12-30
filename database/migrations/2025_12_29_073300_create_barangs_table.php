@@ -12,6 +12,7 @@ return new class extends Migration
             $table->id();
             $table->string('nama_barang');
             $table->integer('jumlah');
+            $table->string('satuan');
             $table->string('kondisi');
             $table->timestamps();
         });

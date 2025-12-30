@@ -27,18 +27,34 @@
                         @enderror
                     </div>
 
-                    <div class="mb-3">
-                        <label for="jumlah" class="form-label">Jumlah</label>
-                        <input type="number" 
-                               class="form-control @error('jumlah') is-invalid @enderror" 
-                               id="jumlah" 
-                               name="jumlah" 
-                               value="{{ old('jumlah', $barang->jumlah) }}"
-                               min="0"
-                               required>
-                        @error('jumlah')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="jumlah" class="form-label">Jumlah</label>
+                            <input type="number" 
+                                   class="form-control @error('jumlah') is-invalid @enderror" 
+                                   id="jumlah" 
+                                   name="jumlah" 
+                                   value="{{ old('jumlah', $barang->jumlah) }}"
+                                   min="0"
+                                   required>
+                            @error('jumlah')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label for="satuan" class="form-label">Satuan</label>
+                            <input type="text" 
+                                   class="form-control @error('satuan') is-invalid @enderror" 
+                                   id="satuan" 
+                                   name="satuan" 
+                                   value="{{ old('satuan', $barang->satuan) }}"
+                                   placeholder="contoh: buah, pack, dus"
+                                   required>
+                            @error('satuan')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
                     </div>
 
                     <div class="mb-3">

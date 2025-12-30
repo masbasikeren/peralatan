@@ -21,9 +21,10 @@
                 <thead>
                     <tr>
                         <th width="5%">No</th>
-                        <th width="35%">Nama Barang</th>
-                        <th width="15%">Jumlah</th>
-                        <th width="20%">Kondisi</th>
+                        <th width="30%">Nama Barang</th>
+                        <th width="10%">Jumlah</th>
+                        <th width="10%">Satuan</th>
+                        <th width="15%">Kondisi</th>
                         <th width="25%">Aksi</th>
                     </tr>
                 </thead>
@@ -33,6 +34,7 @@
                         <td>{{ $barangs->firstItem() + $index }}</td>
                         <td>{{ $barang->nama_barang }}</td>
                         <td>{{ $barang->jumlah }}</td>
+                        <td>{{ $barang->satuan }}</td>
                         <td>
                             @if($barang->kondisi == 'Baik')
                                 <span class="badge bg-success">{{ $barang->kondisi }}</span>
@@ -60,7 +62,7 @@
                     </tr>
                     @empty
                     <tr>
-                        <td colspan="5" class="text-center">Tidak ada data</td>
+                        <td colspan="6" class="text-center">Tidak ada data</td>
                     </tr>
                     @endforelse
                 </tbody>

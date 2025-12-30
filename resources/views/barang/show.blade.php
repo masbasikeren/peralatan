@@ -20,6 +20,10 @@
                         <td>{{ $barang->jumlah }}</td>
                     </tr>
                     <tr>
+                        <th>Satuan</th>
+                        <td>{{ $barang->satuan }}</td>
+                    </tr>
+                    <tr>
                         <th>Kondisi</th>
                         <td>
                             @if($barang->kondisi == 'Baik')

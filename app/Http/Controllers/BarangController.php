@@ -23,6 +23,7 @@ class BarangController extends Controller
         $request->validate([
             'nama_barang' => 'required|string|max:255',
             'jumlah' => 'required|integer|min:0',
+            'satuan' => 'required|string|max:50',
             'kondisi' => 'required|string'
         ]);
 
@@ -47,6 +48,7 @@ class BarangController extends Controller
         $request->validate([
             'nama_barang' => 'required|string|max:255',
             'jumlah' => 'required|integer|min:0',
+            'satuan' => 'required|string|max:50',
             'kondisi' => 'required|string'
         ]);
 
